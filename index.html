@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Strength Checker</title>
+    <link rel="stylesheet" href="Styles/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>🔐 Password Strength Checker</h1>
+        <p>
+          Analyze your password security and get personalized recommendations
+        </p>
+      </div>
+
+      <div class="password-input-section">
+        <div class="input-group">
+          <label for="passwordInput">Enter your password:</label>
+          <div class="password-input-wrapper">
+            <input
+              type="password"
+              id="passwordInput"
+              placeholder="Type your password here..."
+            />
+            <button
+              class="toggle-password"
+              onclick="togglePasswordVisibility()"
+            >
+              👁️
+            </button>
+          </div>
+        </div>
+
+        <div class="strength-meter">
+          <div class="meter-bar">
+            <div class="meter-fill" id="strengthMeter"></div>
+          </div>
+          <div class="strength-label" id="strengthLabel">
+            Enter a password to analyze
+          </div>
+        </div>
+      </div>
+
+      <div class="analysis-section">
+        <div class="analysis-card">
+          <h3>Security Criteria</h3>
+          <ul class="criteria-list" id="criteriaList">
+            <li class="criteria-item">
+              <div class="criteria-icon criteria-not-met">✗</div>
+              <span>At least 8 characters long</span>
+            </li>
+            <li class="criteria-item">
+              <div class="criteria-icon criteria-not-met">✗</div>
+              <span>Contains uppercase letters</span>
+            </li>
+            <li class="criteria-item">
+              <div class="criteria-icon criteria-not-met">✗</div>
+              <span>Contains lowercase letters</span>
+            </li>
+            <li class="criteria-item">
+              <div class="criteria-icon criteria-not-met">✗</div>
+              <span>Contains numbers</span>
+            </li>
+            <li class="criteria-item">
+              <div class="criteria-icon criteria-not-met">✗</div>
+              <span>Contains special characters</span>
+            </li>
+            <li class="criteria-item">
+              <div class="criteria-icon criteria-not-met">✗</div>
+              <span>No common patterns</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="analysis-card">
+          <h3>Recommendations</h3>
+          <ul class="suggestions" id="suggestionsList">
+            <li class="suggestion-item">
+              Enter a password to get personalized suggestions
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="stats-grid" id="passwordStats" style="display: none">
+        <div class="stat-card">
+          <div class="stat-value" id="lengthStat">0</div>
+          <div class="stat-label">Characters</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="entropyStat">0</div>
+          <div class="stat-label">Bits of Entropy</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="timeStat">0s</div>
+          <div class="stat-label">Time to Crack</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="uniqueStat">0</div>
+          <div class="stat-label">Unique Characters</div>
+        </div>
+      </div>
+
+      <div class="generator-section">
+        <div class="analysis-card">
+          <h3>🎲 Password Generator</h3>
+          <div class="generator-controls">
+            <div class="control-group">
+              <label for="lengthSlider"
+                >Length: <span id="lengthValue">12</span></label
+              >
+              <input
+                type="range"
+                id="lengthSlider"
+                min="8"
+                max="50"
+                value="12"
+                oninput="updateLength()"
+              />
+            </div>
+            <div class="control-group">
+              <label
+                ><input type="checkbox" id="includeUpper" checked /> Uppercase
+                (A-Z)</label
+              >
+              <label
+                ><input type="checkbox" id="includeLower" checked /> Lowercase
+                (a-z)</label
+              >
+              <label
+                ><input type="checkbox" id="includeNumbers" checked /> Numbers
+                (0-9)</label
+              >
+              <label
+                ><input type="checkbox" id="includeSpecial" checked /> Special
+                (!@#$%^&*)</label
+              >
+            </div>
+          </div>
+          <button class="generate-btn" onclick="generatePassword()">
+            Generate Secure Password
+          </button>
+          <div
+            class="generated-password"
+            id="generatedPassword"
+            style="display: none"
+          >
+            <span id="generatedText"></span>
+            <button class="copy-btn" onclick="copyPassword()">Copy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
